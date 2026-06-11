@@ -75,7 +75,7 @@ gmx editconf -f conf.gro -d 1.0 -bt triclinic -o box.gro
 
 
 
-gmx solvate -cp box.gro -cs spc216.gro -p topol.top -o box_sol.gro
+gmx solvate -cp box.gro -cs tip3p.gro -p topol.top -o box_sol.gro
 
 
 
@@ -162,7 +162,7 @@ gmx mdrun -deffnm NVT
 -----[NPT]-----
 gedit NPT.mdp (This file is already modified)
 
-gmx grompp -f NPT.mdp -c NVT.gro -r NVT.gro -p topol.top -n index.ndx -maxwarn 2 -o NPT.tpr
+gmx grompp -f npt.mdp -c NVT.gro -r NVT.gro -p topol.top -n index.ndx -maxwarn 2 -o NPT.tpr
 	
 gmx mdrun -deffnm NPT
 
@@ -171,7 +171,7 @@ gmx mdrun -deffnm NPT
 -----[FINAL MD RUN/PRODUCTION]-----
 gedit NPT.mdp (Change MD RUN TIME as per your need)
 
-gmx grompp -f MD.mdp -c NPT.gro -t NPT.cpt -p topol.top -n index.ndx -maxwarn 2 -o MD.tpr
+gmx grompp -f md.mdp -c NPT.gro -t NPT.cpt -p topol.top -n index.ndx -maxwarn 2 -o MD.tpr
 
 gmx mdrun -deffnm MD
 
